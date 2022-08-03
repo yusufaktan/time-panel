@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
+
+    <title>JS ODEV 2</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1920px;
+            height: 1080px;
+            background-color: black;
+        }
+
+        .solkisim {
+            height: 1080px;
+            width: 25%;
+            background: #16375a;
+            float: left;
+        }
+
+        .sagkisim {
+            width: 75%;
+            height: 1080px;
+            background: blue;
+            float: left;
+        }
+
+        .header {
+            width: 100%;
+            float: left;
+            background: yellow;
+            height: 133px;
+            background-image: url("img/header.jpg");
+        }
+
+        .slider {
+            width: 100%;
+            float: left;
+            background: white;
+            height: 600px;
+            position: relative;
+        }
+
+        .duyuru {
+            width: 100%;
+            float: left;
+            background: rgb(255, 166, 0);
+            height: 160px;
+        }
+
+        .footer {
+            width: 100%;
+            float: left;
+            background: blue;
+            height: 187px;
+        }
+
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            top: 520px;
+            font-family: "Alata", sans-serif;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+
+        .mySlides {
+            display: none
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 600px;
+        }
+
+        h1 {
+            padding-top: 10px;
+            font-size: 50px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        marquee {
+            font-size: 55px;
+            font-family: fantasy;
+        }
+
+        .solkutu {
+            width: 50%;
+            height: 100%;
+            background: rgb(0, 212, 255);
+            background: linear-gradient(180deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 96%, rgba(9, 9, 121, 1) 100%);
+            float: left;
+        }
+
+        .sagkutu {
+            width: 50%;
+            height: 100%;
+            background: rgb(186, 84, 0);
+            background: linear-gradient(0deg, rgba(186, 84, 0, 1) 0%, rgba(255, 188, 0, 1) 100%);
+            float: left;
+        }
+
+        h2 {
+            font-size: 90px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        td {
+            color: white;
+            font-size: 32px;
+            padding: 4px 0px 5px 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bosluk {
+            padding-left: 100px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <audio src="music/music.mp3" id="my_audio" loop="loop" autoplay="autoplay"></audio>
+    <div class="container">
+        <div class="solkisim">
+
+            <table>
+                <tr id="satir1">
+                    <td>1. Ders</td>
+                    <td class="bosluk" id="baslangic1">08:00</td>
+                    <td id="bitis1">08:40</td>
+                </tr>
+                <tr id="satir2">
+                    <td>Teneffüs</td>
+                    <td class="bosluk" id="baslangic2">08:40</td>
+                    <td id="bitis2">08:50</td>
+                </tr>
+                <tr id="satir3">
+                    <td>2. Ders </td>
+                    <td class="bosluk" id="baslangic3">08:50</td>
+                    <td id="bitis3">09:30</td>
+                </tr>
+                <tr id="satir4">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic4">09:30</td>
+                    <td id="bitis4">09:40</td>
+                </tr>
+                <tr id="satir5">
+                    <td>3. Ders </td>
+                    <td class="bosluk" id="baslangic5">09:40</td>
+                    <td id="bitis5">10:20</td>
+                </tr>
+                <tr id="satir6">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic6">10:20</td>
+                    <td id="bitis6">10:30</td>
+                </tr>
+                <tr id="satir7">
+                    <td>4. Ders </td>
+                    <td class="bosluk" id="baslangic7">10:30</td>
+                    <td id="bitis7">11:10</td>
+                </tr>
+                <tr id="satir8">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic8">11:10</td>
+                    <td id="bitis8">11:20</td>
+                </tr>
+                <tr id="satir9">
+                    <td>5. Ders </td>
+                    <td class="bosluk" id="baslangic9">11:20</td>
+                    <td id="bitis9">12:00</td>
+                </tr>
+                <tr id="satir10">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic10">12:00</td>
+                    <td id="bitis10">12:10</td>
+                </tr>
+                <tr id="satir11">
+                    <td>6. Ders </td>
+                    <td class="bosluk" id="baslangic11">12:10</td>
+                    <td id="bitis11">12:50</td>
+                </tr>
+                <tr id="satir12">
+                    <td>Öğle Arası </td>
+                    <td class="bosluk" id="baslangic12">12:50</td>
+                    <td id="bitis12">13:30</td>
+                </tr>
+                <tr id="satir13">
+                    <td>7. Ders </td>
+                    <td class="bosluk" id="baslangic13">13:30</td>
+                    <td id="bitis13">14:10</td>
+                </tr>
+                <tr id="satir14">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic14">14:10</td>
+                    <td id="bitis14">14:15</td>
+                </tr>
+                <tr id="satir15">
+                    <td>8. Ders </td>
+                    <td class="bosluk" id="baslangic15">14:15</td>
+                    <td id="bitis15">14:55</td>
+                </tr>
+                <tr id="satir16">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic16">14:55</td>
+                    <td id="bitis16">15:05</td>
+                </tr>
+                <tr id="satir17">
+                    <td>9. Ders </td>
+                    <td class="bosluk" id="baslangic17">15:05</td>
+                    <td id="bitis17">15:45</td>
+                </tr>
+                <tr id="satir18">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic18">15:45</td>
+                    <td id="bitis18">15:50</td>
+                </tr>
+                <tr id="satir19">
+                    <td>10. Ders </td>
+                    <td class="bosluk" id="baslangic19">15:50</td>
+                    <td id="bitis19">16:30</td>
+                </tr>
+                <tr id="satir20">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic20">16:30</td>
+                    <td id="bitis20">16:35</td>
+                </tr>
+                <tr id="satir21">
+                    <td>11. Ders </td>
+                    <td class="bosluk" id="baslangic21">16:35</td>
+                    <td id="bitis21">17:15</td>
+                </tr>
+                <tr id="satir22">
+                    <td>Teneffüs </td>
+                    <td class="bosluk" id="baslangic22">17:15</td>
+                    <td id="bitis22">17:20</td>
+                </tr>
+                <tr id="satir23">
+                    <td>12. Ders</td>
+                    <td class="bosluk" id="baslangic23">17:20</td>
+                    <td id="bitis23">18:00</td>
+                </tr>
+
+            </table>
+
+        </div>
+        <div class="sagkisim">
+
+            <div class="header"></div>
+
+            <div class="slider">
+
+                <div class="mySlides fade">
+                    <img src="img/slider-1.jpg">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="img/slider-2.jpg">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="img/slider-3.jpg">
+                </div>
+
+            </div>
+
+            <div class="duyuru">
+                <h1>DUYURU</h1>
+                <br>
+                <marquee>
+                    25 Mayıs - 10 Haziran tarihleri arasında gerçekleşecek olan sınavların tarihlerini
+                    www.istinye.edu.tr adresinden öğrenebilirsiniz. Sağlıklı Günler...
+                </marquee>
+            </div>
+            <div class="footer">
+
+                <div class="solkutu">
+                    <h1>ŞU AN</h1>
+                    <h2 id="anliksaat"></h2>
+
+                </div>
+
+                <div class="sagkutu">
+                    <h1 id="sagkutuyazi">KALAN SÜRE</h1>
+                    <h2 id="kalansure"></h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        //Müzik------------------------------------------------------------------------
+        window.onload = function () {
+            document.getElementById("my_audio").play();
+        }
+        //Slider------------------------------------------------------------------------
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            timer = setTimeout(() => plusSlides(1), 4000);
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        //Saat Fonksiyonları(Kalan süre, Anlık saat, Anlık bulunan saat aralığı)------------------------------
+        var degisken = setInterval(startTime, 10);
+
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+
+            h = checkTime(h);
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('anliksaat').innerHTML = h + ":" + m;
+            t = setTimeout('startTime()', 1000);
+            var saat = h + ":" + m + ":" + s;
+
+            for (i = 1; i <= 23; i++) {
+
+                document.getElementById("satir" + i).style.backgroundColor = "#16375a";
+
+                if (document.getElementById("baslangic" + i).innerHTML <= saat && document.getElementById("bitis" + i).innerHTML >= saat) {
+                    document.getElementById("satir" + i).style.backgroundColor = "darkorange";
+
+                    var startTime = moment(saat, "hh:mm:ss");
+                    var endTime = moment(document.getElementById("bitis" + i).innerHTML, "hh:mm:ss");
+                    var fark = moment(endTime.diff(startTime)).format("00:mm:ss");
+                    document.getElementById('kalansure').innerHTML = fark;
+                }
+
+            }
+            
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+    </script>
+</body>
+
+</html>
